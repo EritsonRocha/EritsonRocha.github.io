@@ -1,5 +1,5 @@
 header{
-    background-color: rgb(0, 91, 0);
+    background-color: darkgreen;
 }
 
 body{
@@ -7,9 +7,9 @@ body{
 }
 
 section{
-    background-color: rgb(255, 116, 139);
+    background-color: darkred;
 }
 
 aside{
-    background-color: rgb(0, 103, 0);
+    background-color: green;
 }
