@@ -2,10 +2,9 @@ header {
   background-color: darkgreen;
 }
 
-body {
-  background-color: red;
+main{
+  backgroun-color: red;
 }
-
 section {
   background-color: darkred;
 }
@@ -21,6 +20,4 @@ footer {
 body {
     display: grid;
     display: flex;
-
-
 }
