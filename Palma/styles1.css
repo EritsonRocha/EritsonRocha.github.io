@@ -4,11 +4,4 @@ header{
 
 body{
     background: red;
-    section{
-        background: rgb(255, 140, 159);
-    }
-
-    footer{
-        background: rgb(0, 118, 0)
-    }
 }
