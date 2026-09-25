@@ -17,3 +17,7 @@ aside {
 footer {
   background-color: lightgreen;
 }
+
+body {
+    display: grid;
+}
