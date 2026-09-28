@@ -47,7 +47,7 @@ header img {
 }
 
 main {
-  background-color: lightsalmon;
+  background-color: rgb(169, 87, 5);
   padding: 30px;
   margin: 30px 10%;
   flex: 1;
