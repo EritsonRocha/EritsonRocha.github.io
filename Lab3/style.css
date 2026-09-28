@@ -1,6 +1,7 @@
 /* =========================================
    Estrutura geral
 ========================================= */
+
 body {
   font-family: sans-serif;
   background-color: #e0e0e0;
@@ -26,6 +27,10 @@ nav {
   background-color: brown;
   text-align: center;
   padding: 15px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 nav a {
@@ -46,7 +51,7 @@ header img {
 }
 
 main {
-  background-color: rgb(169, 87, 5);
+  background-color: rgb(169 87 5);
   padding: 30px;
   margin: 30px 10%;
   flex: 1;
@@ -63,6 +68,7 @@ footer {
 /* =========================================
    Página principal
 ========================================= */
+
 main img.imagem-home {
   width: 100%;
   max-width: 600px;
@@ -76,6 +82,7 @@ main img.imagem-home {
 /* =========================================
    Página da informação
 ========================================= */
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -146,6 +153,7 @@ th {
 /* =========================================
    Página de multimédia
 ========================================= */
+
 .fotografias {
   display: flex;
   flex-flow: row wrap;
@@ -185,7 +193,7 @@ iframe {
 }
 
 /* =========================================
-   PÁGINA DE LOCALIZAÇÃO
+   Página de localização
 ========================================= */
 
 .localizacao {
@@ -203,34 +211,27 @@ iframe {
   max-width: 100%;
 }
 
-@media (max-width: 600px) {
-  .localizacao {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .texto-localizacao {
-    text-align: center;
-  }
-
-  .mapa {
-    width: 100%;
-    height: 350px;
-  }
-}
-
 /* =========================================
-   MENU RESPONSIVO - main
+   Responsividade
 ========================================= */
 
-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
+@media (width <= 800px) {
+  nav {
+    gap: 5px;
+  }
+
+  nav a {
+    margin: 0 5px;
+    padding: 10px;
+  }
+
+  main {
+    margin: 20px 5%;
+    padding: 25px;
+  }
 }
 
-@media (max-width: 600px) {
+@media (width <= 600px) {
   nav {
     flex-direction: column;
     align-items: stretch;
@@ -244,47 +245,57 @@ nav {
   }
 
   main {
-    margin: 15px 5%;
+    margin: 15px 3%;
     padding: 20px;
   }
 
   h1 {
     font-size: 28px;
+    padding: 15px;
   }
-}
 
-/* Página de multimédia */
-.fotografias {
-  flex-direction: column;
-  align-items: center;
-}
+  /* Página de multimédia */
+  .fotografias {
+    flex-direction: column;
+    align-items: center;
+  }
 
-.fotografias img {
-  width: 100%;
-  max-width: 300px;
-}
+  .fotografias img {
+    width: 100%;
+    max-width: 300px;
+  }
 
-iframe {
-  max-width: 100%;
-  height: auto;
-}
+  iframe {
+    max-width: 100%;
+    height: auto;
+  }
 
-/* Página de localização */
-iframe.mapa {
-  width: 100%;
-  height: 350px;
-}
+  /* Página de localização */
+  .localizacao {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-/* Página de informação */
-table {
-  display: block;
-  overflow-x: auto;
-}
+  .texto-localizacao {
+    text-align: center;
+  }
 
-.curiosities-container {
-  flex-direction: column;
-}
+  .mapa {
+    width: 100%;
+    height: 350px;
+  }
 
-.curiosity-card {
-  flex: 1 1 auto;
+  /* Página de informação */
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .curiosities-container {
+    flex-direction: column;
+  }
+
+  .curiosity-card {
+    flex: 1 1 auto;
+  }
 }
