@@ -10,7 +10,7 @@ img {
   width: 300px;
 }
 
-.hero {
+html {
   background-image: url("images/Background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
