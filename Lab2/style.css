@@ -46,7 +46,7 @@ header img {
 }
 
 main {
-  background-color: rgb(169, 87, 5);
+  background-color: rgb(169 87 5);
   padding: 30px;
   margin: 30px 10%;
   flex: 1;
