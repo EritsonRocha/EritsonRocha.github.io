@@ -299,3 +299,81 @@ iframe {
     flex: 1 1 auto;
   }
 }
+
+/* =========================================
+   PÁGINA DE INFORMAÇÃO - GRID
+========================================= */
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.info-texto {
+  grid-column: 1 / 3;
+}
+
+.imagem-cultura {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.espaco-vazio {
+  min-height: 100px;
+}
+
+.info-grid table {
+  grid-column: 1 / 4;
+}
+
+.imagem-secundaria {
+  grid-column: 3;
+}
+
+.info-grid .curiosities-title {
+  grid-column: 1 / 4;
+}
+
+.info-grid .curiosities-container {
+  grid-column: 1 / 4;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.info-grid .curiosity-card {
+  min-width: 0;
+}
+
+/* =========================================
+   RESPONSIVIDADE - informação
+========================================= */
+
+@media (width <= 600px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .info-texto,
+  .info-grid table,
+  .imagem-secundaria,
+  .info-grid .curiosities-title,
+  .info-grid .curiosities-container {
+    grid-column: 1;
+  }
+
+  .espaco-vazio {
+    display: none;
+  }
+
+  .imagem-cultura {
+    height: auto;
+  }
+
+  .info-grid .curiosities-container {
+    grid-template-columns: 1fr;
+  }
+}
