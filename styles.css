@@ -10,6 +10,7 @@ img {
   width: 300px;
 }
 
+/*background*/
 html {
   background-image: url("images/Background.jpg");
   background-size: cover;
@@ -17,12 +18,14 @@ html {
   height: 100vh;
 }
 
+/*Posição do texto motivacional*/
 .motivacional {
   position: absolute;
   top: 50%;
   left: 50%;
 }
 
+/*Call to action dos projetos*/
 .cta {
   position: absolute;
   top: 65%;
@@ -33,6 +36,7 @@ html {
   text-decoration: none;
 }
 
+/* Seccção sobre projetos */
 nav ul {
   list-style: none;
   padding: 0;
@@ -55,4 +59,29 @@ color: inherit;
   padding: 20px;
   border: 1px solid black;
   width: 250px;
+}
+
+/*Interface*/
+.interfaces-container {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.texto {
+  flex: 1;
+}
+
+.wordcloud {
+  flex: 1;
+}
+
+.wordcloud img {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .interfaces-container {
+    flex-direction: column;
+  }
 }
