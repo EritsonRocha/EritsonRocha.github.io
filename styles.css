@@ -1,3 +1,7 @@
+/* =========================================
+   Estrutura do index
+========================================= */
+
 body {
   background-color: #e26324;
 }
@@ -6,8 +10,15 @@ img {
   width: 300px;
 }
 
-body {
-  background-image: url("images/imagem.jpg");
+.hero {
+  background-image: url("images/Background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.motivacional {
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
