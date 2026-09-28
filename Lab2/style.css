@@ -7,3 +7,16 @@ main {
   display: flex;
   flex-direction: column;
 }
+
+.poema {
+  text-align: center;
+  padding: 20px;
+}
+
+.poema p:nth-child(odd) {
+  font-style: italic;
+}
+
+.poema p:nth-child(even) {
+  font-weight: bold;
+}
