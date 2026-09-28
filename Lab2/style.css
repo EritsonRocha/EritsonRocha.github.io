@@ -47,14 +47,14 @@ header img {
 }
 
 main {
-  background-color: lightskyblue;
+  background-color: lightsalmon;
   padding: 30px;
   margin: 30px 10%;
   flex: 1;
 }
 
 footer {
-  background-color: beige;
+  background-color: brown;
   color: white;
   text-align: center;
   padding: 15px;
@@ -161,6 +161,8 @@ th {
 
 .poema {
   text-align: center;
+  font-family: Rye, serif;
+
 }
 
 .poema div {
