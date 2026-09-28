@@ -80,7 +80,8 @@ color: inherit;
   width: 100%;
 }
 
-@media (max-width: 600px) {
+/* Telemóvel */
+@media (width <= 600px) {
   .interfaces-container {
     flex-direction: column;
   }
