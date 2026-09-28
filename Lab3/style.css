@@ -187,6 +187,41 @@ iframe {
 }
 
 /* =========================================
+   PÁGINA DE LOCALIZAÇÃO
+========================================= */
+
+.localizacao {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.texto-localizacao {
+  flex: 1;
+}
+
+.mapa {
+  flex: 1;
+  max-width: 100%;
+}
+
+@media (max-width: 600px) {
+  .localizacao {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .texto-localizacao {
+    text-align: center;
+  }
+
+  .mapa {
+    width: 100%;
+    height: 350px;
+  }
+}
+
+/* =========================================
    MENU RESPONSIVO - main
 ========================================= */
 
