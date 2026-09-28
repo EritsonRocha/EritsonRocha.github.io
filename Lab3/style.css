@@ -1,0 +1,5 @@
+main {
+  background-image: url("images/marginal.jpg");
+  display: flex;
+  flex-direction: column;
+}
