@@ -6,8 +6,8 @@ img {
   width: 300px;
 }
 
-main {
-  background-image: url("images/cat thinking.jpg");
+body {
+  background-image: url("images/imagem.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
