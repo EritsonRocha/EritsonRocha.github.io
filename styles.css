@@ -10,7 +10,7 @@ img {
   width: 300px;
 }
 
-/*background*/
+/* background */
 html {
   background-image: url("images/Background.jpg");
   background-size: cover;
@@ -18,14 +18,14 @@ html {
   height: 100vh;
 }
 
-/*Posição do texto motivacional*/
+/* Posição do texto motivacional */
 .motivacional {
   position: absolute;
   top: 50%;
   left: 50%;
 }
 
-/*Call to action dos projetos*/
+/* Call to action dos projetos */
 .cta {
   position: absolute;
   top: 65%;
@@ -61,7 +61,7 @@ color: inherit;
   width: 250px;
 }
 
-/*Interface*/
+/* Interface */
 .interfaces-container {
   display: flex;
   gap: 30px;
