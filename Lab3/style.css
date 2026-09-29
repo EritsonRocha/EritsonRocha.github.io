@@ -212,7 +212,7 @@ iframe {
 }
 
 /* =========================================
-   Responsividade
+   Responsividade - estrutura geral
 ========================================= */
 
 @media (width <= 800px) {
@@ -349,7 +349,7 @@ iframe {
 }
 
 /* =========================================
-   RESPONSIVIDADE - informação
+   RESPONSIVIDADE - informação grid
 ========================================= */
 
 @media (width <= 600px) {
