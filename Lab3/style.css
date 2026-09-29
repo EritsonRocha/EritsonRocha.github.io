@@ -65,7 +65,6 @@ footer {
   margin: 0;
 }
 
-
 /* =========================================
    Página principal
 ========================================= */
@@ -77,7 +76,6 @@ main img.imagem-home {
   margin: 20px auto 0;
   display: block;
 }
-
 
 /* =========================================
    Página da informação
@@ -150,7 +148,6 @@ th {
   font-size: 15px;
 }
 
-
 /* =========================================
    Página de multimédia
 ========================================= */
@@ -216,7 +213,6 @@ iframe {
   margin: auto;
 }
 
-
 /* =========================================
    Página de localização
 ========================================= */
@@ -235,7 +231,6 @@ iframe {
 .mapa {
   max-width: 100%;
 }
-
 
 /* =========================================
    Página de informação - Grid
@@ -285,7 +280,6 @@ iframe {
   min-width: 0;
 }
 
-
 /* =========================================
    Responsividade
 ========================================= */
@@ -305,7 +299,6 @@ iframe {
     padding: 25px;
   }
 }
-
 
 @media (width <= 600px) {
   nav {
@@ -330,7 +323,6 @@ iframe {
     padding: 15px;
   }
 
-
   /* Multimédia */
 
   .fotografias {
@@ -351,7 +343,6 @@ iframe {
     font-size: 6vw;
   }
 
-
   /* Localização */
 
   .localizacao {
@@ -368,7 +359,6 @@ iframe {
     height: 350px;
   }
 
-
   /* Informação */
 
   table {
@@ -383,7 +373,6 @@ iframe {
   .curiosity-card {
     flex: 1 1 auto;
   }
-
 
   /* Informação - Grid */
 
