@@ -238,13 +238,20 @@ th {
 
 /* =========================================
    PÁGINA DE MULTIMÉDIA
-   Secções
+   Secções (fotografias, vídeo e poesia)
+   Cada secção ocupa pelo menos o ecrã todo
+   e centra o conteúdo com Flexbox
 ========================================= */
 
 .secao-fotografias,
 .vlog,
 .poesia {
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column; /* conteúdo empilhado: título em cima, resto em baixo */
+  justify-content: center; /* centra na vertical */
+  align-items: center; /* centra na horizontal */
+  box-sizing: border-box; /* o padding passa a contar dentro dos 100vh */
+  min-height: 100vh; /* vh = 1% da altura do ecrã */
   padding: 30px;
 }
 
@@ -271,10 +278,27 @@ th {
   flex-flow: row wrap;
   justify-content: center;
   gap: 20px;
+  width: 100%;
 }
+
+/* =========================================
+   PÁGINA DE MULTIMÉDIA
+   Fotografias - transition
+   A mudança (zoom e sombra) acontece
+   suavemente em 0.3s, em vez de instantânea
+========================================= */
 
 .fotografias img {
   width: 300px;
+  border-radius: 10px;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.fotografias img:hover {
+  transform: scale(1.08); /* aumenta 8% */
+  box-shadow: 0 8px 20px rgb(0 0 0 / 40%);
 }
 
 /* =========================================
