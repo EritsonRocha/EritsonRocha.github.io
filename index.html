@@ -2,69 +2,80 @@
 <html lang="pt">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- Viewport: obrigatório para o site se adaptar ao telemóvel
+         (slides 03.2, s.4-5) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Primeira página</title>
-    <!-- Adicionar esta linha -->
+
+    <!-- Liga este HTML ao ficheiro de estilos -->
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
-    <header>
-      <section class="hero">
-        <h1>Primeira Página Web</h1>
-      </section>
-      <p class="motivacional">Minha querida terra</p>
 
-      <!--Atalhos-->
-      <nav>
-        <ul>
-          <li><a href="#inicio">Início</a></li>
-          <li><a href="#projetos">Projetos</a></li>
-          <li><a href="#interfaces">Interfaces Web</a></li>
-        </ul>
-      </nav>
+  <body>
+    <!-- =====================================================
+         ABA DE NAVEGAÇÃO
+         Fica sempre visível no topo quando fazemos scroll.
+         Cada link leva ao "id" de uma das 3 secções abaixo.
+         ===================================================== -->
+    <nav>
+      <ul>
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#interfaces">Interfaces Web</a></li>
+      </ul>
+    </nav>
+
+    <!-- =====================================================
+         SECÇÃO 1 - INÍCIO (a "hero")
+         É a primeira coisa que o utilizador vê (slides 03.4, s.4-5).
+         A imagem de fundo tem o efeito paralaxe (ver styles.css).
+         ===================================================== -->
+    <header class="inicio" id="inicio">
+      <p class="subtitulo">Desenvolvimento de Interfaces Web</p>
+      <h1>Primeira Página Web</h1>
+      <p class="frase">Minha querida terra</p>
+
+      <!-- Botão de ação: leva à secção dos projetos -->
+      <a class="botao" href="#projetos">Ver projetos</a>
     </header>
 
     <main>
-      <!--Projetos-->
-      <section id="projetos">
+      <!-- ===================================================
+           SECÇÃO 2 - PROJETOS
+           Um botão por laboratório. Clicar leva à página do Lab.
+           =================================================== -->
+      <section class="projetos" id="projetos">
         <h2>Projetos</h2>
 
         <div class="projetos-container">
-          <div class="card">
-            <h3>Lab1</h3>
-            <p>Primeiro laboratório de Desenvolvimento de Interfaces Web.</p>
-            <a href="Lab1/index.html">Ver projeto</a>
-          </div>
-
-          <div class="card">
-            <h3>Lab2</h3>
-            <p>Segundo laboratório de Desenvolvimento de Interfaces Web.</p>
-            <a href="Lab2/index.html">Ver projeto</a>
-          </div>
-
-          <div class="card">
-            <h3>Lab3</h3>
-            <p>Terceiro laboratório de Desenvolvimento de Interfaces Web.</p>
-            <a href="Lab3/index.html">Ver projeto</a>
-          </div>
+          <a class="botao-lab" href="Lab1/index.html">Lab 1</a>
+          <a class="botao-lab" href="Lab2/index.html">Lab 2</a>
+          <a class="botao-lab" href="Lab3/index.html">Lab 3</a>
         </div>
       </section>
 
-      <!--Interfaces-->
-      <section id="interfaces">
+      <!-- ===================================================
+           SECÇÃO 3 - INTERFACES WEB
+           Texto de um lado e imagem (wordcloud) do outro.
+           =================================================== -->
+      <section class="interfaces" id="interfaces">
         <h2>Interfaces Web</h2>
 
         <div class="interfaces-container">
+          <!-- Lado esquerdo: texto -->
           <div class="texto">
             <p>
               Na unidade curricular de
               <a
+                class="link-disciplina"
                 target="_blank"
+                rel="noopener"
                 href="https://moodle.ensinolusofona.pt/course/view.php?id=27320"
               >
                 Desenvolvimento de interfaces web
               </a>
-
               abordaremos as seguintes tecnologias web &#127760; :
             </p>
 
@@ -78,6 +89,7 @@
             <p>Iremos criar soluções criativas!</p>
           </div>
 
+          <!-- Lado direito: imagem -->
           <div class="wordcloud">
             <img src="images/diw.svg" alt="Wordcloud da disciplina DIW" />
           </div>
@@ -86,7 +98,7 @@
     </main>
 
     <footer>
-      <p>Universidade Lusósona</p>
+      <p>Universidade Lusófona</p>
     </footer>
   </body>
 </html>

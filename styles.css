@@ -1,75 +1,246 @@
-/* =========================================
-   Estrutura do index
-========================================= */
+/* =========================================================
+   STYLES.CSS - Página principal (raiz)
 
-/* body {
-  background-color: #e26324;
+   ÍNDICE
+   1. Estilos gerais
+   2. Aba de navegação      (position: sticky + flexbox)
+   3. Botões
+   4. Secção Início / hero  (flexbox + paralaxe)
+   5. Secção Projetos       (grid + paralaxe)
+   6. Secção Interfaces Web (flexbox)
+   7. Rodapé
+   8. Responsividade        (media query para telemóvel)
+
+   CORES (regra 60-30-10, slides 03.4, s.42)
+   - 60% escuro   #14202b  (fundo dominante)
+   - 30% claro    #f5efe6  (secção Interfaces Web e textos)
+   - 10% acento   #ff9f43  (laranja: botões e destaques)
+
+   Propriedades que NÃO estão nos slides estão marcadas com "NOVO".
+========================================================= */
+
+/* =========================================================
+   1. ESTILOS GERAIS
+========================================================= */
+
+/* Faz o padding/border contarem dentro da largura (slides 03.2, s.9) */
+* {
+  box-sizing: border-box;
 }
 
-img {
-  width: 300px;
-} */
-
-/* background */
+/* NOVO: faz o scroll deslizar suavemente quando clicamos num link #id */
 html {
-  background-image: url("images/Background.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 200vh;
+  scroll-behavior: smooth;
 }
 
-/* Posição do texto motivacional */
-.motivacional {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+body {
+  margin: 0; /* retira a margem por omissão do browser */
+
+  /* a preferida primeiro, genérica no fim (slides 03.3, s.24) */
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 1rem; /* rem = relativo ao tamanho de fonte do html (slides 03.3, s.17) */
+  line-height: 1.6;
+  color: #14202b;
+  background-color: #14202b;
 }
 
-/* Call to action dos projetos */
-.cta {
-  position: absolute;
-  top: 65%;
-  left: 50%;
-  padding: 10px 20px;
-  background-color: white;
-  color: black;
-  text-decoration: none;
+/* Títulos das secções Projetos e Interfaces Web */
+h2 {
+  margin: 0 0 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 4px solid #ff9f43; /* linha de destaque por baixo do título */
+  font-size: 2.5rem;
 }
 
-/* Seccção sobre projetos */
+/* =========================================================
+   2. ABA DE NAVEGAÇÃO
+========================================================= */
+
+nav {
+  position: sticky; /* fica "colada" ao topo quando fazemos scroll (slides 03.3, s.6) */
+  top: 0; /* a que distância do topo fica colada */
+  z-index: 10; /* fica à frente de tudo o resto (slides 03.3, s.7) */
+  display: flex; /* flexbox para centrar a lista (slides 03.1, s.5) */
+  justify-content: center; /* alinhamento horizontal (slides 03.1, s.7) */
+  padding: 0.75rem 1rem;
+  background-color: rgb(20 32 43 / 90%); /* escuro, um pouco transparente */
+}
+
+/* A lista de links também é flex: os links ficam lado a lado */
 nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem; /* espaço entre os links */
+  margin: 0;
+  padding: 0;
+  list-style: none; /* retira as bolinhas da lista */
 }
 
 nav a {
+  display: block; /* a área clicável passa a incluir o padding (slides 03.3, s.10) */
+  padding: 0.6rem 1.2rem;
+  border-radius: 2rem; /* cantos muito arredondados */
+  color: white;
+  font-weight: bold;
+  text-decoration: none; /* retira o sublinhado dos links (slides 03.3, s.27) */
+}
+
+nav a:hover {
+  background-color: #ff9f43;
+  color: #14202b;
+}
+
+/* =========================================================
+   3. BOTÕES
+   Dois tipos: .botao (hero) e .botao-lab (projetos)
+========================================================= */
+
+/* Propriedades comuns aos dois botões */
+.botao,
+.botao-lab {
+  display: inline-block;
+  border-radius: 0.5rem;
+  font-weight: bold;
   text-decoration: none;
-  color: inherit;
+  transition: 0.3s; /* NOVO: a mudança de cor/posição no hover demora 0.3s */
 }
 
-.projetos-container {
+/* Botão cheio (laranja) */
+.botao {
+  padding: 0.9rem 2rem;
+  background-color: #ff9f43;
+  color: #14202b;
+}
+
+.botao:hover {
+  background-color: white;
+}
+
+/* Botão dos laboratórios: só contorno, enche no hover */
+.botao-lab {
+  padding: 2.5rem 1rem;
+  border: 3px solid #ff9f43;
+  color: #ff9f43;
+  font-size: 1.75rem;
+  text-align: center;
+}
+
+.botao-lab:hover {
+  background-color: #ff9f43;
+  color: #14202b;
+  transform: translateY(-6px); /* NOVO: o botão sobe 6px no hover */
+}
+
+/* =========================================================
+   4. SECÇÃO 1 - INÍCIO (hero)
+========================================================= */
+
+.inicio {
+  /* Flexbox em coluna: os elementos ficam empilhados e centrados */
   display: flex;
-  gap: 20px;
+  flex-direction: column; /* eixo principal na vertical (slides 03.1, s.6) */
+  justify-content: center; /* centra na vertical (porque o eixo é a coluna) */
+  align-items: center; /* centra na horizontal */
+  min-height: 90vh; /* vh = 1% da altura do ecrã (slides 03.3, s.18) */
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: white;
+
+  /* Imagem de fundo com uma camada preta a 45% por cima (para o texto ler-se bem) */
+  background-image:
+    linear-gradient(rgb(0 0 0 / 45%), rgb(0 0 0 / 45%)),
+    url("images/Background.jpg");
+  background-size: cover; /* a imagem cobre toda a secção */
+  background-position: center;
+
+  /* NOVO: EFEITO PARALAXE
+     "fixed" prende a imagem ao ecrã. Quando fazemos scroll, a secção
+     mexe-se mas a imagem fica parada, como se fosse uma janela. */
+  background-attachment: fixed;
 }
 
-.card {
-  padding: 20px;
-  border: 1px solid black;
-  width: 250px;
+.subtitulo {
+  margin: 0 0 0.5rem;
+  letter-spacing: 0.2em; /* espaço entre letras (slides 03.3, s.28) */
+  text-transform: uppercase; /* tudo em maiúsculas (slides 03.3, s.27) */
 }
 
-/* Interface */
+.inicio h1 {
+  margin: 0 0 0.5rem;
+  font-size: 4rem;
+}
+
+.frase {
+  margin: 0 0 2rem;
+  color: #ff9f43;
+  font-size: 1.5rem;
+  font-style: italic; /* slides 03.3, s.26 */
+}
+
+/* =========================================================
+   5. SECÇÃO 2 - PROJETOS
+========================================================= */
+
+/* Regras comuns às secções Projetos e Interfaces Web:
+   ocupam pelo menos o ecrã todo e centram o conteúdo (flexbox em coluna) */
+.projetos,
+.interfaces {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 6rem 1.5rem 4rem; /* 6rem em cima: espaço para a aba não tapar o título */
+}
+
+.projetos {
+  color: white;
+
+  /* Mesma imagem do hero, mas com uma camada escura a 92%:
+     quase só se vê a cor escura, com um ligeiro eco da imagem */
+  background-image:
+    linear-gradient(rgb(20 32 43 / 92%), rgb(20 32 43 / 92%)),
+    url("images/Background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* paralaxe também aqui */
+}
+
+/* CSS Grid: 3 colunas iguais, uma por laboratório (slides 03.1, s.24 e s.34) */
+.projetos-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* cada 1fr = uma fração do espaço */
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 60rem; /* não deixa a grelha esticar demasiado em ecrãs grandes */
+}
+
+/* =========================================================
+   6. SECÇÃO 3 - INTERFACES WEB
+========================================================= */
+
+.interfaces {
+  background-color: #f5efe6; /* cor clara: separa bem das secções anteriores */
+  color: #14202b;
+}
+
+/* Flexbox: texto e imagem lado a lado (slides 03.1, s.5) */
 .interfaces-container {
   display: flex;
-  gap: 30px;
-  align-items: center;
+  align-items: center; /* centra na vertical */
+  gap: 3rem;
+  width: 100%;
+  max-width: 60rem;
 }
 
+/* flex: 1 = cada lado ocupa metade do espaço */
 .texto {
   flex: 1;
+  font-size: 1.1rem;
+}
+
+.link-disciplina {
+  color: #14202b;
+  font-weight: bold;
 }
 
 .wordcloud {
@@ -77,12 +248,66 @@ nav a {
 }
 
 .wordcloud img {
-  width: 100%;
+  width: 100%; /* a imagem nunca passa a largura da sua caixa */
 }
 
-/* Telemóvel */
+/* =========================================================
+   7. RODAPÉ
+========================================================= */
+
+footer {
+  padding: 1.5rem;
+  border-top: 1px solid rgb(255 255 255 / 15%);
+  color: #f5efe6;
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* =========================================================
+   8. RESPONSIVIDADE
+   Estas regras só se aplicam em ecrãs com 600px ou menos
+   (slides 03.2, s.12). Vêm no fim, para ganharem às anteriores
+   (a ordem das regras importa - slides 03.2, s.13).
+========================================================= */
+
 @media (width <= 600px) {
+  /* Aba mais compacta para os 3 links caberem numa linha */
+  nav ul {
+    gap: 0.25rem;
+  }
+
+  nav a {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  /* Textos mais pequenos */
+  h2 {
+    font-size: 2rem;
+  }
+
+  .inicio h1 {
+    font-size: 2.5rem;
+  }
+
+  /* Em telemóveis o paralaxe com "fixed" nem sempre funciona bem,
+     por isso voltamos ao comportamento normal ("scroll") */
+  .inicio,
+  .projetos {
+    background-attachment: scroll;
+  }
+
+  /* Grid passa a 1 coluna: um botão por linha */
+  .projetos-container {
+    grid-template-columns: 1fr;
+  }
+
+  /* Flex passa a coluna: texto por cima, imagem por baixo */
   .interfaces-container {
     flex-direction: column;
+    gap: 2rem;
   }
 }
