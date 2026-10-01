@@ -1,5 +1,6 @@
 /* =========================================
-   Estrutura geral
+   ESTILOS GERAIS
+   Elementos comuns a todas as páginas
 ========================================= */
 
 body {
@@ -65,20 +66,26 @@ footer {
   margin: 0;
 }
 
+
 /* =========================================
-   Página principal
+   PÁGINA PRINCIPAL
+   Imagem principal
 ========================================= */
 
 main img.imagem-home {
   width: 100%;
   max-width: 600px;
   border-radius: 10px;
-  margin: 20px auto 0;
+  margin-top: 20px;
   display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+
 /* =========================================
-   Página da informação
+   PÁGINA DE INFORMAÇÃO
+   Tabela
 ========================================= */
 
 table {
@@ -114,6 +121,13 @@ th {
   text-align: center;
 }
 
+
+/* =========================================
+   PÁGINA DE INFORMAÇÃO
+   Curiosidades
+   Flexbox
+========================================= */
+
 .curiosities-title {
   margin-top: 40px;
   color: #2c3e50;
@@ -148,92 +162,10 @@ th {
   font-size: 15px;
 }
 
-/* =========================================
-   Página de multimédia
-========================================= */
-
-.imagem-principal {
-  position: relative;
-}
-
-.imagem-principal img {
-  width: 100%;
-}
-
-.imagem-principal p {
-  position: absolute;
-  top: 40%;
-  left: 5%;
-  color: white;
-  font-size: 4vw;
-  font-weight: bold;
-}
-
-.secao-fotografias,
-.vlog,
-.poesia {
-  min-height: 100vh;
-  padding: 30px;
-}
-
-.secao-fotografias {
-  background-color: #d6b48c;
-}
-
-.vlog {
-  background-color: #b8c9d6;
-}
-
-.poesia {
-  background-color: #d8c7d9;
-}
-
-.fotografias {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.fotografias img {
-  width: 300px;
-}
-
-.poema {
-  text-align: center;
-  font-family: Rye, serif;
-}
-
-.poema div {
-  font-size: 30px;
-}
-
-iframe {
-  display: block;
-  margin: auto;
-}
 
 /* =========================================
-   Página de localização
-========================================= */
-
-.localizacao {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
-
-.texto-localizacao,
-.mapa {
-  flex: 1;
-}
-
-.mapa {
-  max-width: 100%;
-}
-
-/* =========================================
-   Página de informação - Grid
+   PÁGINA DE INFORMAÇÃO
+   Grid
 ========================================= */
 
 .info-grid {
@@ -244,17 +176,6 @@ iframe {
 
 .info-texto {
   grid-column: 1 / 3;
-}
-
-.imagem-cultura {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.espaco-vazio {
-  min-height: 100px;
 }
 
 .info-grid table {
@@ -280,8 +201,136 @@ iframe {
   min-width: 0;
 }
 
+
 /* =========================================
-   Responsividade
+   PÁGINA DE INFORMAÇÃO
+   Imagens do Grid
+========================================= */
+
+.imagem-cultura {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.espaco-vazio {
+  min-height: 100px;
+}
+
+
+/* =========================================
+   PÁGINA DE MULTIMÉDIA
+   Imagem principal + texto sobreposto
+   Position
+========================================= */
+
+.imagem-principal {
+  position: relative;
+}
+
+.imagem-principal img {
+  width: 100%;
+}
+
+.imagem-principal p {
+  position: absolute;
+  top: 40%;
+  left: 5%;
+  color: white;
+  font-size: 4vw;
+  font-weight: bold;
+}
+
+
+/* =========================================
+   PÁGINA DE MULTIMÉDIA
+   Secções
+========================================= */
+
+.secao-fotografias,
+.vlog,
+.poesia {
+  min-height: 100vh;
+  padding: 30px;
+}
+
+.secao-fotografias {
+  background-color: #d6b48c;
+}
+
+.vlog {
+  background-color: #b8c9d6;
+}
+
+.poesia {
+  background-color: #d8c7d9;
+}
+
+
+/* =========================================
+   PÁGINA DE MULTIMÉDIA
+   Fotografias
+   Flexbox
+========================================= */
+
+.fotografias {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.fotografias img {
+  width: 300px;
+}
+
+
+/* =========================================
+   PÁGINA DE MULTIMÉDIA
+   Poesia e vídeo
+========================================= */
+
+.poema {
+  text-align: center;
+  font-family: Rye, serif;
+}
+
+.poema div {
+  font-size: 30px;
+}
+
+iframe {
+  display: block;
+  margin: auto;
+}
+
+
+/* =========================================
+   PÁGINA DE LOCALIZAÇÃO
+   Texto + mapa
+   Flexbox
+========================================= */
+
+.localizacao {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.texto-localizacao,
+.mapa {
+  flex: 1;
+}
+
+.mapa {
+  max-width: 100%;
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+   Ecrãs até 800px
 ========================================= */
 
 @media (width <= 800px) {
@@ -300,7 +349,15 @@ iframe {
   }
 }
 
+
+/* =========================================
+   RESPONSIVIDADE
+   Ecrãs até 600px
+========================================= */
+
 @media (width <= 600px) {
+
+  /* Menu */
   nav {
     flex-direction: column;
     align-items: stretch;
@@ -313,6 +370,7 @@ iframe {
     text-align: center;
   }
 
+  /* Conteúdo principal */
   main {
     margin: 15px 3%;
     padding: 20px;
@@ -323,7 +381,11 @@ iframe {
     padding: 15px;
   }
 
-  /* Multimédia */
+
+  /* -----------------------------------------
+     MULTIMÉDIA
+     Fotografias
+  ----------------------------------------- */
 
   .fotografias {
     flex-direction: column;
@@ -335,15 +397,21 @@ iframe {
     max-width: 300px;
   }
 
+  /* Vídeo */
   iframe {
     width: 100%;
   }
 
+  /* Imagem principal */
   .imagem-principal p {
     font-size: 6vw;
   }
 
-  /* Localização */
+
+  /* -----------------------------------------
+     LOCALIZAÇÃO
+     Texto + mapa
+  ----------------------------------------- */
 
   .localizacao {
     flex-direction: column;
@@ -359,7 +427,11 @@ iframe {
     height: 350px;
   }
 
-  /* Informação */
+
+  /* -----------------------------------------
+     INFORMAÇÃO
+     Tabela e curiosidades
+  ----------------------------------------- */
 
   table {
     display: block;
@@ -374,7 +446,11 @@ iframe {
     flex: 1 1 auto;
   }
 
-  /* Informação - Grid */
+
+  /* -----------------------------------------
+     INFORMAÇÃO
+     Grid no telemóvel
+  ----------------------------------------- */
 
   .info-grid {
     grid-template-columns: 1fr;
