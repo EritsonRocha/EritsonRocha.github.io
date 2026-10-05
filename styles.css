@@ -1,23 +1,4 @@
-/* =========================================================
-   STYLES.CSS - Página principal (raiz)
 
-   ÍNDICE
-   1. Estilos gerais
-   2. Aba de navegação      (position: sticky + flexbox)
-   3. Botões
-   4. Secção Início / hero  (flexbox + paralaxe)
-   5. Secção Projetos       (grid + paralaxe)
-   6. Secção Interfaces Web (flexbox)
-   7. Rodapé
-   8. Responsividade        (media query para telemóvel)
-
-   CORES (regra 60-30-10, slides 03.4, s.42)
-   - 60% escuro   #14202b  (fundo dominante)
-   - 30% claro    #f5efe6  (secção Interfaces Web e textos)
-   - 10% acento   #ff9f43  (laranja: botões e destaques)
-
-   Propriedades que NÃO estão nos slides estão marcadas com "NOVO".
-========================================================= */
 
 /* =========================================================
    1. ESTILOS GERAIS
@@ -28,7 +9,6 @@
   box-sizing: border-box;
 }
 
-/* NOVO: faz o scroll deslizar suavemente quando clicamos num link #id */
 html {
   scroll-behavior: smooth;
 }
@@ -36,9 +16,8 @@ html {
 body {
   margin: 0; /* retira a margem por omissão do browser */
 
-  /* a preferida primeiro, genérica no fim (slides 03.3, s.24) */
   font-family: "Segoe UI", Arial, sans-serif;
-  font-size: 1rem; /* rem = relativo ao tamanho de fonte do html (slides 03.3, s.17) */
+  font-size: 1rem;
   line-height: 1.6;
   color: #14202b;
   background-color: #14202b;
@@ -66,7 +45,6 @@ nav {
   background-color: rgb(20 32 43 / 90%); /* escuro, um pouco transparente */
 }
 
-/* A lista de links também é flex: os links ficam lado a lado */
 nav ul {
   display: flex;
   gap: 0.5rem; /* espaço entre os links */
@@ -76,12 +54,12 @@ nav ul {
 }
 
 nav a {
-  display: block; /* a área clicável passa a incluir o padding (slides 03.3, s.10) */
+  display: block;
   padding: 0.6rem 1.2rem;
   border-radius: 2rem; /* cantos muito arredondados */
   color: white;
   font-weight: bold;
-  text-decoration: none; /* retira o sublinhado dos links (slides 03.3, s.27) */
+  text-decoration: none;
 }
 
 nav a:hover {
@@ -101,10 +79,9 @@ nav a:hover {
   border-radius: 0.5rem;
   font-weight: bold;
   text-decoration: none;
-  transition: 0.3s; /* NOVO: a mudança de cor/posição no hover demora 0.3s */
+  transition: 0.3s;
 }
 
-/* Botão cheio (laranja) */
 .botao {
   padding: 0.9rem 2rem;
   background-color: #ff9f43;
@@ -127,7 +104,7 @@ nav a:hover {
 .botao-lab:hover {
   background-color: #ff9f43;
   color: #14202b;
-  transform: translateY(-6px); /* NOVO: o botão sobe 6px no hover */
+  transform: translateY(-6px);
 }
 
 /* =========================================================
@@ -135,7 +112,6 @@ nav a:hover {
 ========================================================= */
 
 .inicio {
-  /* Flexbox em coluna: os elementos ficam empilhados e centrados */
   display: flex;
   flex-direction: column; /* eixo principal na vertical (slides 03.1, s.6) */
   justify-content: center; /* centra na vertical (porque o eixo é a coluna) */
@@ -145,16 +121,12 @@ nav a:hover {
   text-align: center;
   color: white;
 
-  /* Imagem de fundo com uma camada preta a 45% por cima (para o texto ler-se bem) */
   background-image:
     linear-gradient(rgb(0 0 0 / 45%), rgb(0 0 0 / 45%)),
     url("images/Background.jpg");
   background-size: cover; /* a imagem cobre toda a secção */
   background-position: center;
 
-  /* NOVO: EFEITO PARALAXE
-     "fixed" prende a imagem ao ecrã. Quando fazemos scroll, a secção
-     mexe-se mas a imagem fica parada, como se fosse uma janela. */
   background-attachment: fixed;
 }
 
@@ -179,9 +151,6 @@ nav a:hover {
 /* =========================================================
    5. SECÇÃO 2 - PROJETOS
 ========================================================= */
-
-/* Regras comuns às secções Projetos e Interfaces Web:
-   ocupam pelo menos o ecrã todo e centram o conteúdo (flexbox em coluna) */
 .projetos,
 .interfaces {
   display: flex;
@@ -194,18 +163,14 @@ nav a:hover {
 
 .projetos {
   color: white;
-
-  /* Mesma imagem do hero, mas com uma camada escura a 92%:
-     quase só se vê a cor escura, com um ligeiro eco da imagem */
   background-image:
     linear-gradient(rgb(20 32 43 / 92%), rgb(20 32 43 / 92%)),
     url("images/Background.jpg");
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; /* paralaxe também aqui */
+  background-attachment: fixed;
 }
 
-/* CSS Grid: 3 colunas iguais, uma por laboratório (slides 03.1, s.24 e s.34) */
 .projetos-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr; /* cada 1fr = uma fração do espaço */
@@ -223,7 +188,6 @@ nav a:hover {
   color: #14202b;
 }
 
-/* Flexbox: texto e imagem lado a lado (slides 03.1, s.5) */
 .interfaces-container {
   display: flex;
   align-items: center; /* centra na vertical */
@@ -232,7 +196,6 @@ nav a:hover {
   max-width: 60rem;
 }
 
-/* flex: 1 = cada lado ocupa metade do espaço */
 .texto {
   flex: 1;
   font-size: 1.1rem;
@@ -268,9 +231,6 @@ footer p {
 
 /* =========================================================
    8. RESPONSIVIDADE
-   Estas regras só se aplicam em ecrãs com 600px ou menos
-   (slides 03.2, s.12). Vêm no fim, para ganharem às anteriores
-   (a ordem das regras importa - slides 03.2, s.13).
 ========================================================= */
 
 @media (width <= 600px) {
@@ -292,9 +252,6 @@ footer p {
   .inicio h1 {
     font-size: 2.5rem;
   }
-
-  /* Em telemóveis o paralaxe com "fixed" nem sempre funciona bem,
-     por isso voltamos ao comportamento normal ("scroll") */
   .inicio,
   .projetos {
     background-attachment: scroll;
