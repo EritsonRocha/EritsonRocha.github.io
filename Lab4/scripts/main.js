@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 let numero = 0;
 let corAtual = 0;
 
