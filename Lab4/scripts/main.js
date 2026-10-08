@@ -1,9 +1,9 @@
-	// main.js
+// main.js
 
-	let counter = 0;
-	const heading = document.querySelector('h1');
+let counter = 0;
+const heading = document.querySelector("h1");
 
-	function count() {
-	   counter++;
-	   heading.textContent = counter;
-	}
+function count() {
+  counter++;
+  heading.textContent = counter;
+}
