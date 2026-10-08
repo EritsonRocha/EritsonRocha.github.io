@@ -13,7 +13,6 @@ html {
 
 body {
   margin: 0; /* retira a margem por omissão do browser */
-
   font-family: "Segoe UI", Arial, sans-serif;
   font-size: 1rem;
   line-height: 1.6;
@@ -120,11 +119,10 @@ nav a:hover {
   color: white;
 
   background-image:
-    linear-gradient(rgb(0 0 0 / 45%), rgb(0 0 0 / 45%)),
-    url("images/Background.jpg");
+  linear-gradient(rgb(0 0 0 / 45%), rgb(0 0 0 / 45%)),
+  url("images/Background.jpg");
   background-size: cover; /* a imagem cobre toda a secção */
   background-position: center;
-
   background-attachment: fixed;
 }
 
@@ -252,7 +250,7 @@ footer p {
   }
   .inicio,
   .projetos {
-    background-attachment: scroll;
+  background-attachment: scroll;
   }
 
   /* Grid passa a 1 coluna: um botão por linha */
