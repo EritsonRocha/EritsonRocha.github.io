@@ -51,9 +51,7 @@ apagar = () => {
 }
 
 function mudarFundo() {
-  const cor = document.querySelector("#cor");
-
-  document.body.style.backgroundColor = cor.value;
+  document.body.style.backgroundColor = this.value;
 }
 
 contar = () => {
@@ -63,17 +61,15 @@ contar = () => {
   resultado.textContent = numero;
 }
 
+
 function submeterDados() {
   const nome = document.querySelector("#nome").value;
   const idade = document.querySelector("#idade").value;
   const mensagem = document.querySelector("#mensagem");
 
-  if (nome === "" || idade === "") {
-    mensagem.textContent = "Por favor, preencha o nome e a idade.";
-  } else {
-    mensagem.textContent = "Olá, o/a " + nome + " tem " + idade + "!";
-  }
+  mensagem.textContent = "Olá, o " + nome + " tem " + idade + "!";
 }
+
 
 let counter = 0;
 
