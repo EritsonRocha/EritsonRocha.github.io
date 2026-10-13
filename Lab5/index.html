@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <p id="passa" onmouseover="passarPorAqui()" onmouseout="sair()">
+      Passa por aqui!
+    </p>
+
+    <p id="pinta">Pinta-me!</p>
+
+    <div>
+      <button type="button" class="color" data-color="pink">Pink</button>
+      <button type="button" class="color" data-color="cyan">Cyan</button>
+      <button type="button" class="color" data-color="brown">Brown</button>
+    </div>
+
+    <p>Experimenta escrever...</p>
+
+    <input
+      type="text"
+      id="escrever"
+      onkeydown="escrever()"
+      onkeyup="apagar()"
+    />
+
+    <div>
+      <p>Escolha uma cor:</p>
+      <select id="cor">
+        <option value="white">White</option>
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+      </select>
+      <button type="button" onclick="mudarFundo()">Submeter</button>
+    </div>
+
+    <p>
+      <button type="button" onclick="contar()">Conta!</button>
+      <span id="numero">0</span>
+    </p>
+
+    <div id="dados">
+      <input type="text" id="nome" placeholder="Insira o seu nome" />
+      <input type="number" id="idade" placeholder="Insira a sua idade" />
+      <button type="button" onclick="submeterDados()">Submit</button>
+    </div>
+    <p id="mensagem"></p>
+
+    <p>Automatic counter: <span id="counter">0</span></p>
+
+    <script src="scripts/main.js"></script>
+  </body>
+</html>
