@@ -118,8 +118,8 @@ nav a:hover {
   text-align: center;
   color: white;
   background-image:
-  linear-gradient(rgb(0 0 0 / 45%), rgb(0 0 0 / 45%)),
-  url("images/Background.jpg");
+    linear-gradient(rgb(0 0 0 / 45%), rgb(0 0 0 / 45%)),
+    url("images/Background.jpg");
   background-size: cover; /* a imagem cobre toda a secção */
   background-position: center;
   background-attachment: fixed;
@@ -248,8 +248,9 @@ footer p {
     font-size: 2.5rem;
   }
 
-  .inicio, .projetos {
-  background-attachment: scroll;
+  .inicio,
+  .projetos {
+    background-attachment: scroll;
   }
 
   /* Grid passa a 1 coluna: um botão por linha */

@@ -13,7 +13,6 @@ function sair() {
   frase.textContent = "Passa por aqui!";
 }
 
-
 const botoes = document.querySelectorAll(".color");
 
 botoes.forEach(function (button) {
@@ -22,7 +21,6 @@ botoes.forEach(function (button) {
     frase.style.color = button.dataset.color;
   });
 });
-
 
 function escrever() {
   const texto = document.querySelector("#escrever");
@@ -42,25 +40,24 @@ function escrever() {
 }
 
 apagar = () => {
-    const texto = document.querySelector("#escrever");
+  const texto = document.querySelector("#escrever");
 
   if (texto.value.length === 0) {
     texto.style.backgroundColor = "darkgray";
     corAtual = 0;
   }
-}
+};
 
 function mudarFundo() {
   document.body.style.backgroundColor = this.value;
 }
 
 contar = () => {
-    numero++;
+  numero++;
 
   const resultado = document.querySelector("#numero");
   resultado.textContent = numero;
-}
-
+};
 
 function submeterDados() {
   const nome = document.querySelector("#nome").value;
@@ -69,7 +66,6 @@ function submeterDados() {
 
   mensagem.textContent = "Olá, o " + nome + " tem " + idade + "!";
 }
-
 
 let counter = 0;
 
