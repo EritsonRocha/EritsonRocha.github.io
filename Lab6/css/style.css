@@ -1,0 +1,17 @@
+main {
+    background-color: lightgrey;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+section {
+    border: 1px solid grey;
+    padding: 15px;
+    margin: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
