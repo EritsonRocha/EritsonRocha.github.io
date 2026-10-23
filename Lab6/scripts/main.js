@@ -1,22 +1,28 @@
-const titulo = document.createElement(`h1`)
+
+const titulo = document.createElement(`h1`);
 titulo.textContent = `Viva o JavaScript`;
 
 const body = document.querySelector(`body`);
-body.append(titulo)
+body.append(titulo);
 
-//Declaração de variáveis
+// Declaração de variáveis
 const nodeInputNumero = document.querySelector(`#colecao + section input[type="number"]`);
 const nodeInputSubmit = document.querySelector(`#colecao + section input[type="submit"]`);
-const nodeUiColecao = document.querySelector(`#colecao ul`);
+const nodeUlColecao = document.querySelector(`#colecao ul`);
 const form = document.querySelector(`#colecao ~ section form`);
 const nodeTotal = document.querySelector(`#colecao h3 span`);
 
+// Repetidos
+const nodeUlRepetidos = document.querySelector(`#repetidos ul`);
+const nodeTotalRepetidos = document.querySelector(`#repetidos h3 span`);
+
 const colecao = [];
+const repetidos = [];
 
 // B. event handlers
 
-
 const atualizaLista = (colecao, nodeUlColecao) => {
+    // Apaga o conteúdo da lista
     nodeUlColecao.innerHTML = "";
 
     // Percorre os cromos da lista
@@ -37,7 +43,6 @@ const atualizaLista = (colecao, nodeUlColecao) => {
         associaEventosEliminar();
     }
 };
-
 
 const guardaCarta = () => {
     // Vai buscar o numero inserido no input
@@ -65,8 +70,10 @@ const guardaCarta = () => {
         atualizaLista(colecao, nodeUlColecao);
         nodeTotal.textContent = colecao.length;
     }
-};
 
+    // Limpa o input depois de registar o cromo
+    nodeInputNumero.value = "";
+};
 
 const associaEventosEliminar = () => {
     // Vai buscar todos os botões de eliminar
@@ -74,7 +81,7 @@ const associaEventosEliminar = () => {
 
     // Associa um evento a cada botão
     botoesEliminar.forEach((botao) => {
-        botao.addEventListener("click") = () => {
+        botao.addEventListener("click", () => {
             // Vai buscar a posição do cromo na lista de repetidos
             const index = Number(botao.dataset.index);
 
@@ -92,9 +99,3 @@ form.onsubmit = (event) => {
     event.preventDefault();
     guardaCarta();
 };
-
-// Repetidos
-const nodeUlRepetidos = document.querySelector(`#repetidos ul`);
-const nodeTotalRepetidos = document.querySelector(`#repetidos h3 span`);
-
-const repetidos = [];
