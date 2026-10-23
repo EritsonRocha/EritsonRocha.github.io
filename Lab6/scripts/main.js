@@ -1,4 +1,3 @@
-
 console.log("JavaScript carregado!");
 console.log("Formulário:", document.querySelector("form"));
 console.log("Input:", document.querySelector('input[type="number"]'));
@@ -25,34 +24,42 @@ const repetidos = [];
 
 // B. event handlers
 
-const atualizaLista = (colecao, nodeUlColecao) => {
+const atualizaLista = (lista, nodeUl) => {
     // Apaga o conteúdo da lista
-    nodeUlColecao.innerHTML = "";
+    nodeUl.innerHTML = "";
 
     // Percorre os cromos da lista
-    colecao.forEach((numero, index) => {
-        // Se for a lista de repetidos, cria também um botão eliminar
-        if (nodeUlColecao === nodeUlRepetidos) {
-            nodeUlColecao.innerHTML += `<li>${numero} <button class="eliminar" data-index="${index}">Eliminar</button></li>`;
-        } else {
-            // Se não for a lista de repetidos, insere apenas o número
-            const nodeLi = document.createElement("li");
-            nodeLi.textContent = numero;
-            nodeUlColecao.append(nodeLi);
-        }
-    });
+    lista.forEach((numero, index) => {
+        const nodeLi = document.createElement("li");
+        nodeLi.textContent = `${numero} `;
 
-    // Associa os eventos aos botões de eliminar
-    if (nodeUlColecao === nodeUlRepetidos) {
-        associaEventosEliminar();
-    }
+        // Se for a lista de repetidos, cria também um botão eliminar
+        if (nodeUl === nodeUlRepetidos) {
+            const botao = document.createElement("button");
+            botao.className = "eliminar";
+            botao.textContent = "Eliminar";
+
+            botao.addEventListener("click", () => {
+                // Remove o cromo repetido da lista
+                repetidos.splice(index, 1);
+
+                // Atualiza a lista e o total de repetidos
+                atualizaLista(repetidos, nodeUlRepetidos);
+                nodeTotalRepetidos.textContent = repetidos.length;
+            });
+
+            nodeLi.append(botao);
+        }
+
+        nodeUl.append(nodeLi);
+    });
 };
 
 const guardaCarta = () => {
-    // Vai buscar o numero inserido no input
+    // Vai buscar o número inserido no input
     const numero = Number(nodeInputNumero.value);
 
-    // Verifica se o numero já existe na coleção
+    // Verifica se o número já existe na coleção
     if (colecao.includes(numero)) {
         // Se já existir, adiciona aos repetidos
         repetidos.push(numero);
@@ -75,31 +82,22 @@ const guardaCarta = () => {
         nodeTotal.textContent = colecao.length;
     }
 
-    // Limpa o input depois de registar o cromo
-    nodeInputNumero.value = "";
+    // Limpa o formulário e volta a focar o input
+    form.reset();
+    nodeInputNumero.focus();
 };
 
-const associaEventosEliminar = () => {
-    // Vai buscar todos os botões de eliminar
-    const botoesEliminar = document.querySelectorAll(`#repetidos .eliminar`);
+// O botão submit regista o cromo (também é chamado ao carregar Enter no input)
+nodeInputSubmit.addEventListener("click", (event) => {
+    event.preventDefault();
 
-    // Associa um evento a cada botão
-    botoesEliminar.forEach((botao) => {
-        botao.addEventListener("click", () => {
-            // Vai buscar a posição do cromo na lista de repetidos
-            const index = Number(botao.dataset.index);
+    // Respeita o "required" do input
+    if (form.reportValidity()) {
+        guardaCarta();
+    }
+});
 
-            // Remove o cromo repetido da lista
-            repetidos.splice(index, 1);
-
-            // Atualiza a lista e o total de repetidos
-            atualizaLista(repetidos, nodeUlRepetidos);
-            nodeTotalRepetidos.textContent = repetidos.length;
-        });
-    });
-};
-
+// Garante que o formulário nunca recarrega a página
 form.onsubmit = (event) => {
     event.preventDefault();
-    guardaCarta();
 };
