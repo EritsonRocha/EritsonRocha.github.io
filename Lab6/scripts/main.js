@@ -74,7 +74,7 @@ const associaEventosEliminar = () => {
 
     // Associa um evento a cada botão
     botoesEliminar.forEach((botao) => {
-        botao.addEventListener("click", () => {
+        botao.addEventListener("click") = () => {
             // Vai buscar a posição do cromo na lista de repetidos
             const index = Number(botao.dataset.index);
 
@@ -98,5 +98,3 @@ const nodeUlRepetidos = document.querySelector(`#repetidos ul`);
 const nodeTotalRepetidos = document.querySelector(`#repetidos h3 span`);
 
 const repetidos = [];
-
-
