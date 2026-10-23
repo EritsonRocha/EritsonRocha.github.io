@@ -1,4 +1,8 @@
 
+console.log("JavaScript carregado!");
+console.log("Formulário:", document.querySelector("form"));
+console.log("Input:", document.querySelector('input[type="number"]'));
+
 const titulo = document.createElement(`h1`);
 titulo.textContent = `Viva o JavaScript`;
 
