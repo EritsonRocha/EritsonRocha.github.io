@@ -3,13 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JavaScript</title>
+    <title>Loja Online</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <header>
       <h1>Loja</h1>
+
       <nav>
         <ul>
           <li><a href="#produtos">Produtos</a></li>
@@ -19,12 +20,28 @@
     </header>
 
     <main>
-      <section id="produtos"></section>
-      <section id="cesto"></section>
+      <section id="produtos">
+        <h2>Os nossos produtos</h2>
+
+        <div id="lista-produtos"></div>
+      </section>
+
+      <section id="cesto">
+        <h2>O meu cesto</h2>
+        <p>Os produtos que escolheste aparecem aqui.</p>
+
+        <div id="lista-cesto"></div>
+
+        <h3>Total: <span id="total">0.00 €</span></h3>
+      </section>
     </main>
 
-    <footer></footer>
-    <script src="scripts/main.js"></script>
+    <footer>
+      <p>2026 | ULusófona</p>
+    </footer>
+
     <script src="scripts/produtos.js"></script>
+
+    <script src="scripts/main.js"></script>
   </body>
 </html>
