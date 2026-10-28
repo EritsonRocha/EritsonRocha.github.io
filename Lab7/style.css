@@ -1,0 +1,134 @@
+
+/* ESTILO EDITORIAL DE LOJA DE ROUPA */
+
+body {
+    background: #f5f3ee;
+    color: #20201e;
+    font-family: Arial, sans-serif;
+}
+
+header, footer {
+    background: #f5f3ee;
+    color: #20201e;
+    border-color: #d8d5ce;
+}
+
+h1 {
+    color: #20201e;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+nav a {
+    color: #20201e;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+nav a:hover {
+    color: #858176;
+}
+
+h2 {
+    color: #20201e;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+section p {
+    color: #77746d;
+}
+
+#lista-produtos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px 14px;
+}
+
+#lista-produtos article {
+    width: auto;
+    padding: 0 0 18px;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    text-align: left;
+}
+
+#lista-produtos img {
+    height: 320px;
+    background: #eae7e0;
+    object-fit: contain;
+}
+
+#lista-produtos h3 {
+    color: #20201e;
+    font-size: 14px;
+    font-weight: 500;
+    min-height: 0;
+    margin: 8px 0;
+}
+
+#lista-produtos article .categoria {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #77746d;
+}
+
+.preco {
+    color: #20201e;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+button {
+    width: 100%;
+    background: #20201e;
+    color: #fff;
+    border-radius: 0;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background: #55534d;
+}
+
+#cesto {
+    background: transparent;
+    border: none;
+    border-top: 1px solid #d8d5ce;
+    border-radius: 0;
+    padding: 25px 0;
+}
+
+#lista-cesto article {
+    background: transparent;
+    border: 1px solid #d8d5ce;
+    border-radius: 0;
+}
+
+#lista-cesto h3 {
+    color: #20201e;
+}
+
+#lista-cesto button {
+    background: #20201e;
+}
+
+#cesto > h3 {
+    color: #20201e;
+}
+
+@media (max-width: 600px) {
+    #lista-produtos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px 10px;
+    }
+
+    #lista-produtos img {
+        height: 210px;
+    }
+}
