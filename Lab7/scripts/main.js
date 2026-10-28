@@ -170,3 +170,43 @@ nodeListaCesto.addEventListener("click", function(event) {
 
 renderizarProdutos(produtos)
 atualizaCesto()
+
+
+/* EASTER EGG: RICKROLL */
+
+const nodeBotaoSecreto = document.querySelector("#botao-secreto")
+const nodeRickroll = document.querySelector("#rickroll")
+const nodeVideoRickroll = document.querySelector("#video-rickroll")
+const nodeFecharRickroll = document.querySelector("#fechar-rickroll")
+const nodeTituloLoja = document.querySelector("h1")
+
+let cliquesTitulo = 0
+
+// Cinco cliques no título ativam o botão secreto
+nodeTituloLoja.addEventListener("click", function() {
+
+    cliquesTitulo++
+
+    if (cliquesTitulo === 5) {
+        nodeBotaoSecreto.click()
+        cliquesTitulo = 0
+    }
+})
+
+
+// Mostrar o Rickroll em ecrã inteiro
+nodeBotaoSecreto.addEventListener("click", function() {
+
+    nodeRickroll.classList.add("ativo")
+
+    nodeVideoRickroll.src =
+        "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+})
+
+
+// Fechar o vídeo e parar a reprodução
+nodeFecharRickroll.addEventListener("click", function() {
+
+    nodeRickroll.classList.remove("ativo")
+    nodeVideoRickroll.src = ""
+})
