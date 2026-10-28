@@ -181,13 +181,12 @@ const nodeFecharRickroll = document.querySelector("#fechar-rickroll")
 
 // Abrir o vídeo
 nodeBotaoSecreto.addEventListener("click", function() {
-
     nodeRickroll.classList.add("ativo")
 
     nodeVideoRickroll.currentTime = 0
 
     nodeVideoRickroll.play().catch(function(erro) {
-        console.log("Não foi possível iniciar o vídeo:", erro)
+        console.log("Erro ao reproduzir o vídeo:", erro)
     })
 })
 
