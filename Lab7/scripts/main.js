@@ -184,7 +184,7 @@ nodeBotaoSecreto.addEventListener("click", function() {
     nodeRickroll.classList.add("ativo")
 
     nodeVideoRickroll.src =
-        "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+        "https://www.youtube.com/embed/QDia3e12czc?autoplay=1"
 })
 
 // Fechar o Rickroll e parar o vídeo
