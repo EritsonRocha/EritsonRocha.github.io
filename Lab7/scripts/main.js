@@ -179,16 +179,24 @@ const nodeRickroll = document.querySelector("#rickroll")
 const nodeVideoRickroll = document.querySelector("#video-rickroll")
 const nodeFecharRickroll = document.querySelector("#fechar-rickroll")
 
-// Abrir o Rickroll
+// Abrir o vídeo
 nodeBotaoSecreto.addEventListener("click", function() {
+
     nodeRickroll.classList.add("ativo")
 
-    nodeVideoRickroll.src =
-        "https://www.youtube-nocookie.com/embed/xMHJGd3wwZk?playlist=xMHJGd3wwZk&autoplay=1&iv_load_policy=3&loop=1"
+    nodeVideoRickroll.currentTime = 0
+
+    nodeVideoRickroll.play().catch(function(erro) {
+        console.log("Não foi possível iniciar o vídeo:", erro)
+    })
 })
 
-// Fechar o Rickroll e parar o vídeo
+
+// Fechar o vídeo e parar a reprodução
 nodeFecharRickroll.addEventListener("click", function() {
+
+    nodeVideoRickroll.pause()
+    nodeVideoRickroll.currentTime = 0
+
     nodeRickroll.classList.remove("ativo")
-    nodeVideoRickroll.src = ""
 })
