@@ -1,15 +1,32 @@
-
 /* ESTADO E VARIÁVEIS */
+
+const API_URL = "https://deisishop.pw.deisi.ulusofona.pt"
 
 const nodeListaProdutos = document.querySelector("#lista-produtos")
 const nodeListaCesto = document.querySelector("#lista-cesto")
 const nodeTotal = document.querySelector("#total")
 
+// Os produtos são obtidos da API (AJAX) e guardados aqui
+let produtos = []
+
 // Carregar os produtos guardados ou começar com um cesto vazio
-const produtosSelecionados = JSON.parse(localStorage.getItem("produtos-selecionados")) || []
+function lerCesto() {
+    try {
+        return JSON.parse(localStorage.getItem("produtos-selecionados")) || []
+    } catch (erro) {
+        return []
+    }
+}
+
+const produtosSelecionados = lerCesto()
 
 
 /* FUNÇÕES AUXILIARES */
+
+function guardarCesto() {
+    localStorage.setItem("produtos-selecionados", JSON.stringify(produtosSelecionados))
+}
+
 
 function criarProduto(produto) {
 
@@ -24,6 +41,7 @@ function criarProduto(produto) {
 
     const nodeCategoria = document.createElement("p")
     nodeCategoria.textContent = produto.category
+    nodeCategoria.classList.add("categoria")
 
     const nodePreco = document.createElement("p")
     nodePreco.textContent = produto.price.toFixed(2) + " €"
@@ -32,7 +50,7 @@ function criarProduto(produto) {
     const nodeButton = document.createElement("button")
     nodeButton.textContent = "Adicionar ao cesto"
 
-    // Guardar o botão para adicionar o produto ao cesto
+    // Guardar no botão o ID do produto a adicionar ao cesto
     nodeButton.dataset.id = produto.id
 
     nodeArticle.append(nodeImagem)
@@ -77,12 +95,12 @@ function criarProdutoCesto(produto, posicao) {
 
 /* GESTÃO DOS PRODUTOS */
 
-function renderizarProdutos(produtos) {
+function renderizarProdutos(listaProdutos) {
 
     nodeListaProdutos.innerHTML = ""
 
     // Criar um artigo para cada produto
-    produtos.forEach(function(produto) {
+    listaProdutos.forEach(function(produto) {
 
         const nodeArticle = criarProduto(produto)
 
@@ -118,13 +136,42 @@ function atualizaCesto() {
     // Atualizar o preço total do cesto
     nodeTotal.textContent = total.toFixed(2) + " €"
 
-    // Mostrar uma mensagem quando o cesto estiver vazio
-    if (produtosSelecionados.length === 0) {
+    // Mostrar uma mensagem quando não há produtos visíveis no cesto
+    if (nodeListaCesto.children.length === 0) {
 
         const nodeMensagem = document.createElement("p")
         nodeMensagem.textContent = "O teu cesto está vazio!"
 
         nodeListaCesto.append(nodeMensagem)
+    }
+}
+
+
+/* PEDIDO À API (AJAX) */
+
+async function carregarProdutos() {
+
+    nodeListaProdutos.textContent = "A carregar produtos..."
+
+    try {
+        // Pedido HTTP GET à API
+        const resposta = await fetch(API_URL)
+
+        // fetch só falha em erros de rede; erros HTTP (404, 500...) têm de ser verificados
+        if (!resposta.ok) {
+            throw new Error("Erro HTTP " + resposta.status)
+        }
+
+        produtos = await resposta.json()
+
+        renderizarProdutos(produtos)
+
+        // O cesto só pode ser desenhado depois de os produtos chegarem
+        atualizaCesto()
+
+    } catch (erro) {
+        nodeListaProdutos.textContent = "Não foi possível carregar os produtos. Tenta novamente mais tarde."
+        console.error(erro)
     }
 }
 
@@ -140,8 +187,7 @@ nodeListaProdutos.addEventListener("click", function(event) {
 
         produtosSelecionados.push(id)
 
-        // Guardar o cesto no armazenamento local
-        localStorage.setItem("produtos-selecionados", JSON.stringify(produtosSelecionados))
+        guardarCesto()
 
         atualizaCesto()
     }
@@ -158,8 +204,7 @@ nodeListaCesto.addEventListener("click", function(event) {
         // Remover apenas uma ocorrência do produto
         produtosSelecionados.splice(posicao, 1)
 
-        // Guardar o cesto atualizado
-        localStorage.setItem("produtos-selecionados", JSON.stringify(produtosSelecionados))
+        guardarCesto()
 
         atualizaCesto()
     }
@@ -168,5 +213,4 @@ nodeListaCesto.addEventListener("click", function(event) {
 
 /* INICIALIZAÇÃO */
 
-renderizarProdutos(produtos)
-atualizaCesto()
+carregarProdutos()
