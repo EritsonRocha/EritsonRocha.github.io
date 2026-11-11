@@ -1,10 +1,12 @@
 /* ESTADO E VARIÁVEIS */
 
-const API_URL = "https://deisishop.pw.deisi.ulusofona.pt"
+const BASE_URL = "https://deisishop.pw.deisi.ulusofona.pt"
+const API_URL = BASE_URL + "/products"
 
 const nodeListaProdutos = document.querySelector("#lista-produtos")
 const nodeListaCesto = document.querySelector("#lista-cesto")
 const nodeTotal = document.querySelector("#total")
+const nodeFiltro = document.querySelector("#filtro-categoria")
 
 // Os produtos são obtidos da API (AJAX) e guardados aqui
 let produtos = []
@@ -28,12 +30,27 @@ function guardarCesto() {
 }
 
 
+// Se a API devolver um caminho relativo, junta o endereço do servidor
+function urlImagem(caminho) {
+
+    if (caminho.startsWith("http")) {
+        return caminho
+    }
+
+    if (caminho.startsWith("/")) {
+        return BASE_URL + caminho
+    }
+
+    return BASE_URL + "/" + caminho
+}
+
+
 function criarProduto(produto) {
 
     const nodeArticle = document.createElement("article")
 
     const nodeImagem = document.createElement("img")
-    nodeImagem.src = produto.image
+    nodeImagem.src = urlImagem(produto.image)
     nodeImagem.alt = produto.title
 
     const nodeTitulo = document.createElement("h3")
@@ -44,7 +61,7 @@ function criarProduto(produto) {
     nodeCategoria.classList.add("categoria")
 
     const nodePreco = document.createElement("p")
-    nodePreco.textContent = produto.price.toFixed(2) + " €"
+    nodePreco.textContent = Number(produto.price).toFixed(2) + " €"
     nodePreco.classList.add("preco")
 
     const nodeButton = document.createElement("button")
@@ -68,14 +85,14 @@ function criarProdutoCesto(produto, posicao) {
     const nodeArticle = document.createElement("article")
 
     const nodeImagem = document.createElement("img")
-    nodeImagem.src = produto.image
+    nodeImagem.src = urlImagem(produto.image)
     nodeImagem.alt = produto.title
 
     const nodeTitulo = document.createElement("h3")
     nodeTitulo.textContent = produto.title
 
     const nodePreco = document.createElement("p")
-    nodePreco.textContent = produto.price.toFixed(2) + " €"
+    nodePreco.textContent = Number(produto.price).toFixed(2) + " €"
     nodePreco.classList.add("preco")
 
     const nodeButton = document.createElement("button")
@@ -129,7 +146,7 @@ function atualizaCesto() {
 
             nodeListaCesto.append(nodeArticle)
 
-            total = total + produto.price
+            total = total + Number(produto.price)
         }
     })
 
@@ -149,34 +166,100 @@ function atualizaCesto() {
 
 /* PEDIDO À API (AJAX) */
 
-async function carregarProdutos() {
+function carregarProdutos() {
 
     nodeListaProdutos.textContent = "A carregar produtos..."
 
-    try {
-        // Pedido HTTP GET à API
-        const resposta = await fetch(API_URL)
+    fetch(API_URL)
+        .then(function(resposta) {
 
-        // fetch só falha em erros de rede; erros HTTP (404, 500...) têm de ser verificados
-        if (!resposta.ok) {
-            throw new Error("Erro HTTP " + resposta.status)
-        }
+            // fetch só falha em erros de rede; erros HTTP (404, 500...) têm de ser verificados
+            if (!resposta.ok) {
+                throw new Error("Erro HTTP " + resposta.status)
+            }
 
-        produtos = await resposta.json()
+            return resposta.json()
+        })
+        .then(function(dados) {
 
-        renderizarProdutos(produtos)
+            produtos = dados
 
-        // O cesto só pode ser desenhado depois de os produtos chegarem
-        atualizaCesto()
+            renderizarProdutos(produtos)
 
-    } catch (erro) {
-        nodeListaProdutos.textContent = "Não foi possível carregar os produtos. Tenta novamente mais tarde."
-        console.error(erro)
-    }
+            // O cesto só pode ser desenhado depois de os produtos chegarem
+            atualizaCesto()
+        })
+        .catch(function(erro) {
+
+            nodeListaProdutos.textContent = "Não foi possível carregar os produtos. Tenta novamente mais tarde."
+
+            console.error(erro)
+        })
+}
+
+
+function carregarCategorias() {
+
+    fetch(BASE_URL + "/categories")
+        .then(function(resposta) {
+
+            if (!resposta.ok) {
+                throw new Error("Erro HTTP " + resposta.status)
+            }
+
+            return resposta.json()
+        })
+        .then(function(categorias) {
+
+            // Criar uma opção no select para cada categoria
+            categorias.forEach(function(categoria) {
+
+                const nodeOption = document.createElement("option")
+                nodeOption.value = categoria.id
+                nodeOption.textContent = categoria.name
+
+                nodeFiltro.append(nodeOption)
+            })
+        })
+        .catch(function(erro) {
+            console.error(erro)
+        })
 }
 
 
 /* EVENT LISTENERS */
+
+// Evento para filtrar os produtos pela categoria escolhida
+nodeFiltro.addEventListener("change", function() {
+
+    let url = API_URL
+
+    // Valor vazio corresponde a "Todas as categorias"
+    if (nodeFiltro.value !== "") {
+        url = API_URL + "?category_id=" + nodeFiltro.value
+    }
+
+    fetch(url)
+        .then(function(resposta) {
+
+            if (!resposta.ok) {
+                throw new Error("Erro HTTP " + resposta.status)
+            }
+
+            return resposta.json()
+        })
+        .then(function(listaFiltrada) {
+
+            // Só a lista visível muda; "produtos" continua com todos para o cesto
+            renderizarProdutos(listaFiltrada)
+        })
+        .catch(function(erro) {
+
+            nodeListaProdutos.textContent = "Não foi possível filtrar os produtos."
+
+            console.error(erro)
+        })
+})
 
 // Evento para adicionar produtos ao cesto
 nodeListaProdutos.addEventListener("click", function(event) {
@@ -214,3 +297,4 @@ nodeListaCesto.addEventListener("click", function(event) {
 /* INICIALIZAÇÃO */
 
 carregarProdutos()
+carregarCategorias()
