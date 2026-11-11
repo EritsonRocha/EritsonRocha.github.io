@@ -1,3 +1,5 @@
+/* ESTILO INSPIRADO NA ESTRUTURA DA EMESTUDIOS */
+
 /* BASE */
 
 * {
@@ -96,6 +98,44 @@ nav select {
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
+    cursor: pointer;
+}
+
+
+/* PESQUISA E ORDENAÇÃO */
+
+#barra-ferramentas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    margin-bottom: 32px;
+}
+
+#pesquisa,
+#ordenar {
+    padding: 8px 4px;
+    border: none;
+    border-bottom: 1px solid #20201e;
+    border-radius: 0;
+    background: transparent;
+    color: #20201e;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+#pesquisa {
+    flex: 1;
+    min-width: 180px;
+}
+
+#pesquisa:focus,
+#ordenar:focus {
+    outline: none;
+    border-bottom-width: 2px;
+}
+
+#ordenar {
     cursor: pointer;
 }
 

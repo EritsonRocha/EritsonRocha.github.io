@@ -7,9 +7,14 @@ const nodeListaProdutos = document.querySelector("#lista-produtos")
 const nodeListaCesto = document.querySelector("#lista-cesto")
 const nodeTotal = document.querySelector("#total")
 const nodeFiltro = document.querySelector("#filtro-categoria")
+const nodePesquisa = document.querySelector("#pesquisa")
+const nodeOrdenar = document.querySelector("#ordenar")
 
 // Os produtos são obtidos da API (AJAX) e guardados aqui
 let produtos = []
+
+// Produtos da categoria escolhida (ponto de partida da pesquisa e da ordenação)
+let produtosCategoria = []
 
 // Carregar os produtos guardados ou começar com um cesto vazio
 function lerCesto() {
@@ -126,6 +131,37 @@ function renderizarProdutos(listaProdutos) {
 }
 
 
+// Aplica a pesquisa e a ordenação à lista da categoria e desenha o resultado
+function aplicarFiltros() {
+
+    const texto = nodePesquisa.value.trim().toLowerCase()
+
+    // filter devolve uma lista nova, por isso o sort não altera produtosCategoria
+    const lista = produtosCategoria.filter(function(produto) {
+        return produto.title.toLowerCase().includes(texto)
+    })
+
+    if (nodeOrdenar.value === "asc") {
+
+        lista.sort(function(a, b) {
+            return Number(a.price) - Number(b.price)
+        })
+
+    } else if (nodeOrdenar.value === "desc") {
+
+        lista.sort(function(a, b) {
+            return Number(b.price) - Number(a.price)
+        })
+    }
+
+    renderizarProdutos(lista)
+
+    if (lista.length === 0) {
+        nodeListaProdutos.textContent = "Nenhum produto encontrado."
+    }
+}
+
+
 function atualizaCesto() {
 
     nodeListaCesto.innerHTML = ""
@@ -183,8 +219,9 @@ function carregarProdutos() {
         .then(function(dados) {
 
             produtos = dados
+            produtosCategoria = dados
 
-            renderizarProdutos(produtos)
+            aplicarFiltros()
 
             // O cesto só pode ser desenhado depois de os produtos chegarem
             atualizaCesto()
@@ -251,7 +288,9 @@ nodeFiltro.addEventListener("change", function() {
         .then(function(listaFiltrada) {
 
             // Só a lista visível muda; "produtos" continua com todos para o cesto
-            renderizarProdutos(listaFiltrada)
+            produtosCategoria = listaFiltrada
+
+            aplicarFiltros()
         })
         .catch(function(erro) {
 
@@ -260,6 +299,13 @@ nodeFiltro.addEventListener("change", function() {
             console.error(erro)
         })
 })
+
+// Atualiza a lista sempre que o utilizador escreve na pesquisa
+nodePesquisa.addEventListener("input", aplicarFiltros)
+
+// Atualiza a lista quando muda a ordenação
+nodeOrdenar.addEventListener("change", aplicarFiltros)
+
 
 // Evento para adicionar produtos ao cesto
 nodeListaProdutos.addEventListener("click", function(event) {
